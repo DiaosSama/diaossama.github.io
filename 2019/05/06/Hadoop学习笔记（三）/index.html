@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（三）/pic/Zookeeper基本架构.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（三）/pic/Zookeeper%20Watcher运行机制.png">
-<meta property="og:updated_time" content="2019-05-06T01:58:26.623Z">
+<meta property="og:updated_time" content="2019-05-06T02:08:42.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop学习笔记（三）">
 <meta name="twitter:description" content="Hadoop学习笔记（三）之ZookeeperZookeeperzookeeper是什么，有什么应用场景zookeeper是什么 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and provid">
@@ -180,10 +180,7 @@
       
         <h1 id="Hadoop学习笔记（三）之Zookeeper"><a href="#Hadoop学习笔记（三）之Zookeeper" class="headerlink" title="Hadoop学习笔记（三）之Zookeeper"></a>Hadoop学习笔记（三）之Zookeeper</h1><h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h3 id="zookeeper是什么，有什么应用场景"><a href="#zookeeper是什么，有什么应用场景" class="headerlink" title="zookeeper是什么，有什么应用场景"></a>zookeeper是什么，有什么应用场景</h3><h4 id="zookeeper是什么"><a href="#zookeeper是什么" class="headerlink" title="zookeeper是什么"></a>zookeeper是什么</h4><blockquote>
 <p>ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. All of these kinds of services are used in some form or another by distributed applications. Each time they are implemented there is a lot of work that goes into fixing the bugs and race conditions that are inevitable. Because of the difficulty of implementing these kinds of services, applications initially usually skimp on them ,which make them brittle in the presence of change and difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.</p>
-</blockquote>
-<p>ZooKeeper aims at distilling the essence of these different services into a very simple interface to a centralized coordination service. The service itself is distributed and highly reliable. Consensus, group management, and presence protocols will be implemented by the service so that the applications do not need to implement them on their own. Application specific uses of these will consist of a mixture of specific components of Zoo Keeper and application specific conventions. ZooKeeper Recipes shows how this simple service can be used to build much more powerful abstractions.</p>
-<blockquote>
-<p>​                                                                                 —— Zookeeper Wiki<br><a id="more"></a></p>
+<p>ZooKeeper aims at distilling the essence of these different services into a very simple interface to a centralized coordination service. The service itself is distributed and highly reliable. Consensus, group management, and presence protocols will be implemented by the service so that the applications do not need to implement them on their own. Application specific uses of these will consist of a mixture of specific components of Zoo Keeper and application specific conventions. ZooKeeper Recipes shows how this simple service can be used to build much more powerful abstractions.<br>​                                                                                 —— Zookeeper Wiki<br><a id="more"></a></p>
 </blockquote>
 <p>以上是Apache官方对Zookeeper的定位。<br>简单地说，Zookeeper是一种集中式服务（根据官方文档，centralized service应该翻译为集中式服务，但是维基百科和百度百科却说它是个分布式协调服务，无解）。它可以为大型分布式计算提供开源的分布式配置服务、同步服务和命名注册。由于独立的应用程序在实现对分布式管理的功能时容易对各种变化和竞争分析不全面，导致应用程序变得非常脆弱。而Zookeeper的目的就是为这些需要使用分布式协调服务的应用程序提供一个统一易用的接口并提供稳定可靠的分布式协调服务。</p>
 <h4 id="具体的应用场景"><a href="#具体的应用场景" class="headerlink" title="具体的应用场景"></a>具体的应用场景</h4><blockquote>
