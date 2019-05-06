@@ -6,18 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>DiaosSama&#39;s Blog</title>
+  <title>Hadoop学习笔记（二） | DiaosSama&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="17级SCUTer, CTF新手, 菜鸡web手, 跟大佬们还差得远">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DiaosSama&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Hadoop学习之配置Hadoop（一）环境配置 工具：VMWare WorkStation12 Pro 环境：Kali Linux 2018.3a(x64)（下载地址：https://www.kali.org/downloads/ ）">
+<meta name="keywords" content="Hadoop,大数据,分布式系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop学习笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/index.html">
 <meta property="og:site_name" content="DiaosSama&#39;s Blog">
-<meta property="og:description" content="17级SCUTer, CTF新手, 菜鸡web手, 跟大佬们还差得远">
+<meta property="og:description" content="Hadoop学习之配置Hadoop（一）环境配置 工具：VMWare WorkStation12 Pro 环境：Kali Linux 2018.3a(x64)（下载地址：https://www.kali.org/downloads/ ）">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/VM12版本过老.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/安装引导.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/安装成功.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/创建hadoop用户.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/SSH成功生成.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/centos下载.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/赋予root权限.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/开启分布式进程成功.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/web界面查看hadoop.PNG">
+<meta property="og:updated_time" content="2019-05-06T01:54:08.097Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DiaosSama&#39;s Blog">
-<meta name="twitter:description" content="17级SCUTer, CTF新手, 菜鸡web手, 跟大佬们还差得远">
+<meta name="twitter:title" content="Hadoop学习笔记（二）">
+<meta name="twitter:description" content="Hadoop学习之配置Hadoop（一）环境配置 工具：VMWare WorkStation12 Pro 环境：Kali Linux 2018.3a(x64)（下载地址：https://www.kali.org/downloads/ ）">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/pic/VM12版本过老.PNG">
   
     <link rel="alternative" href="/atom.xml" title="DiaosSama&#39;s Blog" type="application/atom+xml">
   
@@ -153,120 +165,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Hadoop学习笔记（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Hadoop学习笔记（二）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/06/Hadoop学习笔记（三）/">Hadoop学习笔记（三）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/06/Hadoop学习笔记（三）/" class="archive-article-date">
-  	<time datetime="2019-05-06T01:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hadoop学习笔记（三）之Zookeeper"><a href="#Hadoop学习笔记（三）之Zookeeper" class="headerlink" title="Hadoop学习笔记（三）之Zookeeper"></a>Hadoop学习笔记（三）之Zookeeper</h1><h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h3 id="zookeeper是什么，有什么应用场景"><a href="#zookeeper是什么，有什么应用场景" class="headerlink" title="zookeeper是什么，有什么应用场景"></a>zookeeper是什么，有什么应用场景</h3><h4 id="zookeeper是什么"><a href="#zookeeper是什么" class="headerlink" title="zookeeper是什么"></a>zookeeper是什么</h4><blockquote>
-<p>ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. All of these kinds of services are used in some form or another by distributed applications. Each time they are implemented there is a lot of work that goes into fixing the bugs and race conditions that are inevitable. Because of the difficulty of implementing these kinds of services, applications initially usually skimp on them ,which make them brittle in the presence of change and difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.</p>
-</blockquote>
-<p>ZooKeeper aims at distilling the essence of these different services into a very simple interface to a centralized coordination service. The service itself is distributed and highly reliable. Consensus, group management, and presence protocols will be implemented by the service so that the applications do not need to implement them on their own. Application specific uses of these will consist of a mixture of specific components of Zoo Keeper and application specific conventions. ZooKeeper Recipes shows how this simple service can be used to build much more powerful abstractions.</p>
-<blockquote>
-<p>​                                                                                 —— Zookeeper Wiki<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2019/05/06/Hadoop学习笔记（三）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/06/Hadoop学习笔记（三）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop学习笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/06/Hadoop学习笔记（二）/">Hadoop学习笔记（二）</a>
+    <h1 class="article-title" itemprop="name">
+      Hadoop学习笔记（二）
     </h1>
   
 
@@ -281,12 +187,89 @@
       
         <h1 id="Hadoop学习之配置Hadoop"><a href="#Hadoop学习之配置Hadoop" class="headerlink" title="Hadoop学习之配置Hadoop"></a>Hadoop学习之配置Hadoop</h1><h2 id="（一）环境配置"><a href="#（一）环境配置" class="headerlink" title="（一）环境配置"></a>（一）环境配置</h2><ul>
 <li>工具：VMWare WorkStation12 Pro</li>
-<li>环境：Kali Linux 2018.3a(x64)（下载地址：<a href="https://www.kali.org/downloads/" target="_blank" rel="noopener">https://www.kali.org/downloads/</a> ）</li></ul>
-        
-          <a class="article-more-a" href="/2019/05/06/Hadoop学习笔记（二）/#more">more >></a>
-        
+<li>环境：Kali Linux 2018.3a(x64)（下载地址：<a href="https://www.kali.org/downloads/" target="_blank" rel="noopener">https://www.kali.org/downloads/</a> ）<a id="more"></a>
+<h3 id="马上就遇到的坑（窒息）"><a href="#马上就遇到的坑（窒息）" class="headerlink" title="马上就遇到的坑（窒息）"></a>马上就遇到的坑（窒息）</h3><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\VM12版本过老.PNG" alt="VM12版本过老"><br>准备往VM中安装Kali Linux时，我发现VM不能自动识别系统镜像所包含的系统，只能自己选择，但是我下载Kali是2018.3a版本的，使用的是Linux 4.x的内核，选项中最高支持到3.x内核。没办法不想重新下一个VM14，只能先硬着头皮安装，看看会不会出什么问题。<br>读取镜像，然后给虚拟机划分虚拟内存及磁盘。<br>然后打开虚拟机进行系统的安装引导。<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\安装引导.PNG" alt="安装引导"></li>
+</ul>
+<p>安装成功！好像也并没有发现什么问题。这个伏笔就先埋着吧，接下来还是赶紧配置一下HDFS<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\安装成功.PNG" alt="安装成功"></p>
+<h2 id="（二）HDFS安装"><a href="#（二）HDFS安装" class="headerlink" title="（二）HDFS安装"></a>（二）HDFS安装</h2><ul>
+<li>参考教程：<a href="https://www.yiibai.com/hadoop/hadoop_enviornment_setup.html" target="_blank" rel="noopener">https://www.yiibai.com/hadoop/hadoop_enviornment_setup.html</a><h3 id="创建一个独立用户"><a href="#创建一个独立用户" class="headerlink" title="创建一个独立用户"></a>创建一个独立用户</h3>创建一个独立用户是为了将Hadoop文件系统从Unix文件系统中隔离开来，步骤如下：</li>
+<li>使用 “su” 命令开启root</li>
+<li>创建用户从root帐户使用命令 “useradd username”</li>
+<li>使用命令打开一个现有的用户帐户“su username”<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\创建hadoop用户.PNG" alt="创建hadoop用户"></li>
+</ul>
+<h3 id="SSH设置和密钥生成"><a href="#SSH设置和密钥生成" class="headerlink" title="SSH设置和密钥生成"></a>SSH设置和密钥生成</h3><p>SSH设置需要在集群上做不同的操作，如启动，停止，分布式守护shell操作。认证不同的Hadoop用户，需要一种用于Hadoop用户提供的公钥/私钥对，并用不同的用户共享。<br>下面的命令用于生成使用SSH键值对。复制公钥形成 id_rsa.pub 到authorized_keys 文件中，并提供拥有者具有authorized_keys文件的读写权限。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa </span><br><span class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys </span><br><span class="line">$ chmod 0600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<h4 id="这一部分的坑"><a href="#这一部分的坑" class="headerlink" title="这一部分的坑"></a>这一部分的坑</h4><ol>
+<li>当我在Kali Linux中新建用户后，发现无法用该用户登入图形界面，遂查找了一下解决方案，发现新建可用于图形界面的用户与普通用户所用的命令是不同的。一个是useradd，一个是 adduser 。useradd添加的用户可以使用SSH登录（解决方案：<a href="https://blog.csdn.net/zxx2011082427/article/details/51932718" target="_blank" rel="noopener">https://blog.csdn.net/zxx2011082427/article/details/51932718</a> ）</li>
+<li>然鹅新建用户也没有用，当我在hadoop用户下执行 ssh-keygen -t rsa 系统提示 permission denied 但ssh用户我又不敢给它过多的权限，于是我仅在 /home/hadoop 文件夹下赋予其写权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@DiaosSama:~# chown -R hadoop:hadoop /home/hadoop</span><br><span class="line">root@DiaosSama:~# chmod 760 /home/hadoop</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>成功生成SSH键值对！<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\SSH成功生成.PNG" alt="SSH成功生成"><br>（参考资料：<a href="https://blog.csdn.net/weiyangdong/article/details/80323661" target="_blank" rel="noopener">https://blog.csdn.net/weiyangdong/article/details/80323661</a> ）</p>
+<p><strong>但是</strong><br>紧接着我发现，Kali Linux上没有rpm包，没有ssh client，也没有ssh server。。<br>导致我在配置SSH无密钥登录时一直连接不上本地主机，我还以为是我的ssh密钥配置出现了偏差。。<br>这个坑一坑就是一个多小时，最后发现问题，只能更换Linux版本，换成 CentOS 7，重新配置SSH无密钥登录<br><del>（这东西差点把我弄的当场自闭）</del><br>（参考资料：<a href="https://www.cnblogs.com/xzjf/p/7231519.html" target="_blank" rel="noopener">https://www.cnblogs.com/xzjf/p/7231519.html</a> ）</p>
+<h4 id="安装CentOS-7"><a href="#安装CentOS-7" class="headerlink" title="安装CentOS 7"></a>安装CentOS 7</h4><p>(下载地址：<a href="http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1804.iso" target="_blank" rel="noopener">http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1804.iso</a> )<br>结果…我花了大半天下下来一个centos everything的镜像，VMware无法从boot安装！经过多次上网考证，最终发现自己要下DVD版的才能安装在VMware里…今天真的是踩坑无数…<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\centos下载.PNG" alt="centos下载"></p>
+<h4 id="CentOS下配置SSH"><a href="#CentOS下配置SSH" class="headerlink" title="CentOS下配置SSH"></a>CentOS下配置SSH</h4><p>(参考资料：<a href="https://www.cnblogs.com/xzjf/p/7231519.html" target="_blank" rel="noopener">https://www.cnblogs.com/xzjf/p/7231519.html</a> )</p>
+<ol>
+<li><p>首先仍然是创建hadoop用户，原因上部分有提到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -m hadoop -s /bin/bash #创建新用户，并使用/bin/bash 作为shell</span><br><span class="line">[root@localhost ~]# passwd hadoop #更改密码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为用户增加管理员权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># visudo</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如下图，找到 root ALL=(ALL) ALL 这行（应该在第98行，可以先按一下键盘上的 ESC 键，然后输入 :98 (按一下冒号，接着输入98，再按回车键)，可以直接跳到第98行 ），然后在这行下面增加一行内容：hadoop ALL=(ALL) ALL （当中的间隔为tab），如下图所示：<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic\赋予root权限.png" alt="赋予root权限"></p>
+<ol start="3">
+<li>配置SSH无密码登录<br>首先测试SSH是否可用：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@localhost ~]$ ssh localhost #连接到本地</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后输入exit退出刚刚的ssh，回到终端窗口，然后利用 ssh-keygen 生成密钥，并将密钥加入到授权中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@localhost ~]$ exit                               #退出刚才的ssh localhost</span><br><span class="line">[hadoop@localhost ~]$ cd ~/.ssh/                         #若没有该目录，请先执行一次ssh localhost</span><br><span class="line">[hadoop@localhost .ssh]$ ssh-keygen -t rsa                  #会有提示，都按回车就可以</span><br><span class="line">[hadoop@localhost ~]$ cat id_rsa.pub &gt;&gt; authorized_keys  #加入授权</span><br><span class="line">[hadoop@localhost ~]$ chmod 600 ./authorized_keys        #修改文件权限</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装JAVA"><a href="#安装JAVA" class="headerlink" title="安装JAVA"></a>安装JAVA</h3><ol>
+<li>下载解压JDK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@localhost ~] sudo yum install java-1.7.0-openjdk java-openjdk-devel</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="结果再次踩坑"><a href="#结果再次踩坑" class="headerlink" title="结果再次踩坑"></a>结果再次踩坑</h5><p>输入命令后，系统提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Loaded plugins: fastestmirror, langpacks</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">One of the configured repositories failed (Unknown),</span><br><span class="line">and yum doesn&apos;t have enough cached data to continue. At this point the only</span><br><span class="line">safe thing yum can do is fail. There are a few ways to work &quot;fix&quot; this:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1. Contact the upstream for the repository and get them to fix the problem.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. Reconfigure the baseurl/etc. for the repository, to point to a working</span><br><span class="line">upstream. This is most often useful if you are using a newer</span><br><span class="line">distribution release than is supported by the repository (and the</span><br><span class="line">packages for the previous distribution release still work).</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3. Disable the repository, so yum won&apos;t use it by default. Yum will then</span><br><span class="line">just ignore the repository until you permanently enable it again or use</span><br><span class="line">--enablerepo for temporary usage:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yum-config-manager --disable &lt;repoid&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4. Configure the failing repository to be skipped, if it is unavailable.</span><br><span class="line">Note that yum will try to contact the repo. when it runs most commands,</span><br><span class="line">so will have to try and fail each time (and thus. yum will be be much</span><br><span class="line">slower). If it is a very temporary problem though, this is often a nice</span><br><span class="line">compromise:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true</span><br></pre></td></tr></table></figure></p>
+<p>猜想可能是网络不通，遂ping各路域名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@localhost ~]$ ping www.baidu.com</span><br><span class="line">ping: www.baidu.com: Name or service not known</span><br><span class="line">[hadoop@localhost ~]$ ping 8.8.8.8</span><br><span class="line">connect: Network is unreachable</span><br></pre></td></tr></table></figure></p>
+<p>应该是网卡没有配好，虚拟机连不上网 <del>（CentOS真的8行）</del><br>然后…我尝试了网上各种恢复CentOS 7网络连接的方法…却一直没能成功<br><strong>终于</strong><br>尝试了无数种方法后有一种奏效了！（解决方案：<a href="https://blog.csdn.net/sdd220/article/details/80306730" target="_blank" rel="noopener">https://blog.csdn.net/sdd220/article/details/80306730</a> ）<br>然后发现只能解析ip地址无法解析域名，那就是DNS服务器的问题了<br>于是再添加了几个备用DNS（解决方案：<a href="https://blog.csdn.net/sdd220/article/details/80306730" target="_blank" rel="noopener">https://blog.csdn.net/sdd220/article/details/80306730</a> ）<br>再次执行安装java的命令<br><strong>成功了！！！！（泪流满面.jpg）</strong></p>
+<h3 id="安装Hadoop-2-6-5"><a href="#安装Hadoop-2-6-5" class="headerlink" title="安装Hadoop 2.6.5"></a>安装Hadoop 2.6.5</h3><blockquote>
+<p>参考资料：<a href="http://dblab.xmu.edu.cn/blog/install-hadoop-in-centos/" target="_blank" rel="noopener">http://dblab.xmu.edu.cn/blog/install-hadoop-in-centos/</a></p>
+</blockquote>
+<p>在优秀同学的推荐下，找到了一个非常不错的教程。<br>折腾了一下把我的CentOS 7装上了图形界面，去到镜像站 <a href="http://mirrors.cnnic.cn/apache/hadoop/common/" target="_blank" rel="noopener">http://mirrors.cnnic.cn/apache/hadoop/common/</a> 下载了hadoop2.6.5 开始着手安装<br>按照教程中介绍的方法，我很快便成功安装上了hadoop 2.6.5<br>接下来终于可以试手了</p>
+<h3 id="Hadoop单机配置（非分布式）"><a href="#Hadoop单机配置（非分布式）" class="headerlink" title="Hadoop单机配置（非分布式）"></a>Hadoop单机配置（非分布式）</h3><p>Hadoop 默认模式为非分布式模式，无需进行其他配置即可运行。非分布式即单 Java 进程，方便进行调试。<br>首先我们可以运行Hadoop自带的丰富例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bogon hadoop]$ ./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar</span><br></pre></td></tr></table></figure></p>
+<p>可以看到所有例子，包括wordcount、terasort、join、grep等</p>
+<h3 id="Hadoop伪分布式配置"><a href="#Hadoop伪分布式配置" class="headerlink" title="Hadoop伪分布式配置"></a>Hadoop伪分布式配置</h3><p>Hadoop 可以在单节点上以伪分布式的方式运行，Hadoop 进程以分离的 Java 进程来运行，节点既作为 NameNode 也作为 DataNode，同时，读取的是 HDFS 中的文件。<br>在设置 Hadoop 伪分布式配置前，我们还需要设置 HADOOP 环境变量，执行如下命令在 ~/.bashrc 中设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gedit ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>这次我们选择用 gedit 而不是 vim 来编辑。gedit 是文本编辑器，类似于 Windows 中的记事本，会比较方便。保存后记得关掉整个 gedit 程序，否则会占用终端。在文件最后面增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Hadoop Environment Variables</span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export HADOOP_INSTALL=$HADOOP_HOME</span><br><span class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</span><br><span class="line">export YARN_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin</span><br></pre></td></tr></table></figure></p>
+<p>保存后，不要忘记执行如下命令使配置生效：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>这些变量在启动 Hadoop 进程时需要用到，不设置的话可能会报错（这些变量也可以通过修改 ./etc/hadoop/hadoop-env.sh 实现）。</p>
+<p>Hadoop 的配置文件位于 /usr/local/hadoop/etc/hadoop/ 中，伪分布式需要修改2个配置文件 core-site.xml 和 hdfs-site.xml 。Hadoop的配置文件是 xml 格式，每个配置以声明 property 的 name 和 value 的方式来实现。</p>
+<p>修改配置文件 core-site.xml (通过 gedit 编辑会比较方便: gedit ./etc/hadoop/core-site.xml)，将当中的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>修改为下面配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>Abase for other temporary directories<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>同样的，修改配置文件 hdfs-site.xml：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp/dfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp/dfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>配置完成后，执行 NameNode 的格式化:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/hdfs namenode -format</span><br></pre></td></tr></table></figure></p>
+<p>后续执行教程中的操作，便看到了理想的输出结果<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic/开启分布式进程成功.PNG" alt="开启分布式进程成功"></p>
+<p>在web界面输入 <a href="http://localhost:50070" target="_blank" rel="noopener">http://localhost:50070</a> 在web界面上查看hadoop进程<br><img src="/2019/05/06/Hadoop学习笔记（二）/./pic/web界面查看hadoop.PNG" alt="web界面查看hadoop"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>历经千辛万苦，靠着网络上各路大神的博客教程，我一个小白在对Hadoop了解甚少的情况下终于配置出了本机的Hadoop伪分布式。看着鼓捣了好几天的hadoop终于运行了起来，心中还是蛮有成就感的。<br>说实话，研究一些自己完全不懂的东西的时候，还是要学会善用搜索引擎，有许多问题还是能够自行解决的，及时中间会走很多弯路，那最后它也会变成你的知识储备嘛。<br>好了弯路走的还是有点多，接下来要加快对Hadoop其他方面知识的学习了。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -325,16 +308,84 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/06/Hadoop学习笔记（二）/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/06/Hadoop学习笔记（二）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/05/06/Hadoop学习笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hadoop学习笔记（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/06/Hadoop学习笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hadoop学习笔记（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -349,200 +400,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop学习笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/06/Hadoop学习笔记（一）/">Hadoop学习笔记（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/06/Hadoop学习笔记（一）/" class="archive-article-date">
-  	<time datetime="2019-05-06T01:39:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><p>###初识Hadoop<br>Hadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。</p>
-<p>Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启发，MapReduce能将任务分成小份并分配到多台机器上，并从机器收取结果综合，形成结果数据集。<br></p>
-        
-          <a class="article-more-a" href="/2019/05/06/Hadoop学习笔记（一）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/06/Hadoop学习笔记（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop学习之配置Hadoop"><span class="toc-number">1.</span> <span class="toc-text">Hadoop学习之配置Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（一）环境配置"><span class="toc-number">1.1.</span> <span class="toc-text">（一）环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#马上就遇到的坑（窒息）"><span class="toc-number">1.1.1.</span> <span class="toc-text">马上就遇到的坑（窒息）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（二）HDFS安装"><span class="toc-number">1.2.</span> <span class="toc-text">（二）HDFS安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个独立用户"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建一个独立用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH设置和密钥生成"><span class="toc-number">1.2.2.</span> <span class="toc-text">SSH设置和密钥生成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#这一部分的坑"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">这一部分的坑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装CentOS-7"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">安装CentOS 7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CentOS下配置SSH"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">CentOS下配置SSH</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装JAVA"><span class="toc-number">1.2.3.</span> <span class="toc-text">安装JAVA</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#结果再次踩坑"><span class="toc-number">1.2.3.0.1.</span> <span class="toc-text">结果再次踩坑</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Hadoop-2-6-5"><span class="toc-number">1.2.4.</span> <span class="toc-text">安装Hadoop 2.6.5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop单机配置（非分布式）"><span class="toc-number">1.2.5.</span> <span class="toc-text">Hadoop单机配置（非分布式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop伪分布式配置"><span class="toc-number">1.2.6.</span> <span class="toc-text">Hadoop伪分布式配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-kap0k新生赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/06/kap0k新生赛/">kap0k新生赛</a>
-    </h1>
   
 
-        
-        <a href="/2019/05/06/kap0k新生赛/" class="archive-article-date">
-  	<time datetime="2019-05-05T17:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Kap0k新生选拔赛WriteUp"><a href="#Kap0k新生选拔赛WriteUp" class="headerlink" title="Kap0k新生选拔赛WriteUp"></a>Kap0k新生选拔赛WriteUp</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作为一个大二的咸鱼，来参加新生选拔赛，还是只能看着dalao瑟瑟发抖，还是要好好加油，紧随各位dalao脚步。希望下次比赛不要又被题目搞到自闭。<br></p>
-        
-          <a class="article-more-a" href="/2019/05/06/kap0k新生赛/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">信息安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">WriteUp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/信息安全//" class="article-tag-list-link color5">信息安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/06/kap0k新生赛/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -565,8 +448,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

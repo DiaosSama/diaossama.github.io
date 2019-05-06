@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hadoop学习笔记（一） | DiaosSama&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] Hadoop###初识HadoopHadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。 Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启">
+  <meta name="description" content="Hadoop###初识HadoopHadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。 Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启发，MapR">
 <meta name="keywords" content="Hadoop,大数据,分布式系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop学习笔记（一）">
 <meta property="og:url" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（一）/index.html">
 <meta property="og:site_name" content="DiaosSama&#39;s Blog">
-<meta property="og:description" content="[TOC] Hadoop###初识HadoopHadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。 Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启">
+<meta property="og:description" content="Hadoop###初识HadoopHadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。 Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启发，MapR">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（一）/pic/HDFS架构图.png">
-<meta property="og:updated_time" content="2019-05-06T01:41:45.612Z">
+<meta property="og:updated_time" content="2019-05-06T01:49:04.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop学习笔记（一）">
-<meta name="twitter:description" content="[TOC] Hadoop###初识HadoopHadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。 Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启">
+<meta name="twitter:description" content="Hadoop###初识HadoopHadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。 Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启发，MapR">
 <meta name="twitter:image" content="http://yoursite.com/2019/05/06/Hadoop学习笔记（一）/pic/HDFS架构图.png">
   
     <link rel="alternative" href="/atom.xml" title="DiaosSama&#39;s Blog" type="application/atom+xml">
@@ -55,6 +55,8 @@
 		<hgroup>
 		  <h1 class="header-author"><a href="/">DiaosSama</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">向善而生 为恶不谋</p>
 		
 
 		<nav class="header-menu">
@@ -111,6 +113,8 @@
 			<hgroup>
 			  <h1 class="header-author js-header-author">DiaosSama</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>向善而生 为恶不谋<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -173,10 +177,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><p>###初识Hadoop<br>Hadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。</p>
-<p>Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启发，MapReduce能将任务分成小份并分配到多台机器上，并从机器收取结果综合，形成结果数据集。</p>
-<p>Hadoop的核心分为两个层次：<br>  1.加工/计算层(MapReduce)<br>  2.储存层(Hadoop分布式文件系统HDFS)</p>
+        <h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><p>###初识Hadoop<br>Hadoop是一种用Java编写，允许分布在集群使用简单的编程模型的计算机大型数据集处理的Apache的开源框架。 Hadoop框架应用工程提供跨计算机集群的分布式存储和计算的环境。 Hadoop是专为从单一服务器到上千台机器扩展，每个机器都可以提供本地计算和存储。</p>
+<p>Hadoop出现是受到了Google开发的用于处理大量数据的算法MapReduce的启发，MapReduce能将任务分成小份并分配到多台机器上，并从机器收取结果综合，形成结果数据集。<br><a id="more"></a><br>Hadoop的核心分为两个层次：<br>  1.加工/计算层(MapReduce)<br>  2.储存层(Hadoop分布式文件系统HDFS)</p>
 <h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><h3 id="（一）什么是HDFS"><a href="#（一）什么是HDFS" class="headerlink" title="（一）什么是HDFS"></a>（一）什么是HDFS</h3><p>HDFS 是 Hadoop Distributed File System 的缩写，是Hadoop核心架构的基础。它是基于谷歌文件系统(Google File System)，并提供了一个设计在普通硬件上运行的分布式文件系统。它与现有的分布式文件系统有许多相似之处。来自其他分布式文件系统的差别是显著。它高度容错并设计成部署在低成本的硬件。提供了高吞吐量的应用数据访问，并且适用于具有大数据集的应用程序。</p>
 <p>HDFS拥有超大型的数据量，并提供更轻松地访问。为了存储这些庞大的数据，这些文件都存储在多台机器。这些文件都存储以冗余的方式来拯救系统免受可能的数据损失，在发生故障时。 HDFS也使得可用于并行处理的应用程序。</p>
 <h4 id="HDFS的特点"><a href="#HDFS的特点" class="headerlink" title="HDFS的特点"></a>HDFS的特点</h4><ul>
@@ -359,6 +361,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/05/06/Hadoop学习笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hadoop学习笔记（二）
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/05/06/kap0k新生赛/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">kap0k新生赛</div>
@@ -518,6 +529,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">WriteUp</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -579,7 +594,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">17级SCUTer&lt;br&gt;CTF新手&lt;br&gt;菜鸡web手</div>
   	  	
     	</section>
     
